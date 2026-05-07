@@ -3,21 +3,21 @@
 
 <div class="container mt-5">
 
-<div class="row justify-content-center">
+    <div class="row justify-content-center">
 
-<div class="col-md-8">
+        <div class="col-md-8">
 
-<div class="card p-4">
+            <div class="card p-4">
 
-<h2 class="mb-4">Assign Locations for: <?php echo $food['food_name']; ?></h2>
+                <h2 class="mb-4">Assign Locations for: <?php echo $food['food_name']; ?></h2>
 
-<?php if(isset($_SESSION['success'])): ?>
-    <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
-<?php endif; ?>
+                <?php if(isset($_SESSION['success'])): ?>
+                    <div class="alert alert-success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
+                <?php endif; ?>
 
-<?php if(isset($_SESSION['error'])): ?>
-    <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
-<?php endif; ?>
+                <?php if(isset($_SESSION['error'])): ?>
+                    <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+                <?php endif; ?>
 
 <form method="POST" action="index.php?page=manager&action=manage-food-locations">
 

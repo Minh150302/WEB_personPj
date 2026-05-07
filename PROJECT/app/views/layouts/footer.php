@@ -6,7 +6,7 @@
 
 <div class="col-md-4">
 <h5>Location</h5>
-<p>Downtown Branch<br>123 Food Street<br>City Center<br>Phone: (555) 123-4567</p>
+<p>Headquarter <br>123 Street<br> HCM <br>Phone: (555) 888-8888</p>
 </div>
 
 <div class="col-md-4">

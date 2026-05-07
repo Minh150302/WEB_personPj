@@ -9,14 +9,19 @@ document.addEventListener('DOMContentLoaded', function() {
         clearTimeout(timeout);
         const query = this.value.trim();
 
-        if (query.length < 2) {
+        if (query.length < 1) {
             resultContainer.innerHTML = '';
             return;
         }
 
         timeout = setTimeout(function() {
-            fetch('app/api/search.php?q=' + encodeURIComponent(query))
-                .then(response => response.json())
+            fetch('api/search.php?q=' + encodeURIComponent(query))
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     if (data.length === 0) {
                         resultContainer.innerHTML = '<p class="col-12 text-center">No results found</p>';

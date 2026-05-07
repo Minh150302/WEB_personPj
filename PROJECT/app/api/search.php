@@ -6,7 +6,7 @@ require_once __DIR__ . '/../models/Food.php';
 
 $query = $_GET['q'] ?? '';
 
-if(strlen($query) < 2){
+if(strlen($query) < 1){
     echo json_encode([]);
     exit();
 }

@@ -2,7 +2,7 @@
 
 <div class="container">
 
-<a class="navbar-brand" href="index.php">FoodieHub</a>
+<a class="navbar-brand" href="index.php">Food WEB</a>
 
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 <span class="navbar-toggler-icon"></span>

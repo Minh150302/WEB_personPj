@@ -7,8 +7,8 @@ require_once __DIR__ . '/../models/Food.php';
 $action = $_GET['action'] ?? 'dashboard';
 
 // Check if manager is logged in
-if(!isset($_SESSION['manager'])){
-    if($action != 'login' && $action != 'register'){
+if (!isset($_SESSION['manager'])) {
+    if ($action != 'login' && $action != 'register') {
         header('Location: index.php?page=manager&action=login');
         exit();
     }
@@ -76,11 +76,20 @@ elseif($action == 'add-food'){
 
         if(Food::addFood($food_name, $description, $price, $image, $category_id)){
             $_SESSION['success'] = "Food added successfully";
+            $_SESSION['just_redirected'] = true;
             header('Location: index.php?page=manager&action=add-food');
             exit();
         } else {
             $_SESSION['error'] = "Failed to add food";
         }
+    }
+
+    // Clear old messages if not a redirect from this action
+    if (!isset($_SESSION['just_redirected'])) {
+        unset($_SESSION['success']);
+        unset($_SESSION['error']);
+    } else {
+        unset($_SESSION['just_redirected']);
     }
 
     $categories = Food::getCategories();
@@ -133,7 +142,7 @@ elseif($action == 'manage-food-locations'){
         // Check if food_locations table exists
         $conn = $GLOBALS['conn'];
         $check = mysqli_query($conn, "SHOW TABLES LIKE 'food_locations'");
-        
+
         if(mysqli_num_rows($check) > 0){
             // Delete existing food-location mappings
             $sql = "DELETE FROM food_locations WHERE food_id = $food_id";
@@ -143,7 +152,7 @@ elseif($action == 'manage-food-locations'){
             foreach($selected_locations as $location_id){
                 $location_id = (int)$location_id;
                 $stock = isset($_POST["stock_$location_id"]) ? (int)$_POST["stock_$location_id"] : 10;
-                
+
                 if($stock > 0){
                     $sql = "INSERT INTO food_locations(food_id, location_id, stock) VALUES($food_id, $location_id, $stock)";
                     mysqli_query($conn, $sql);
@@ -153,9 +162,18 @@ elseif($action == 'manage-food-locations'){
         } else {
             $_SESSION['error'] = "Food locations table not yet created. Please create the table first.";
         }
-        
-        header('Location: index.php?page=manager&action=food-locations');
+
+        $_SESSION['just_redirected'] = true;
+        header('Location: index.php?page=manager&action=manage-food-locations&food_id=' . $food_id);
         exit();
+    }
+
+    // Clear old messages if not a redirect from this action
+    if (!isset($_SESSION['just_redirected'])) {
+        unset($_SESSION['success']);
+        unset($_SESSION['error']);
+    } else {
+        unset($_SESSION['just_redirected']);
     }
 
     if(isset($_GET['food_id'])){
@@ -163,13 +181,13 @@ elseif($action == 'manage-food-locations'){
         $food = Food::getFoodById($food_id);
         $locations = Food::getAllLocations();
         $current_locations = Food::getLocationsByFoodId($food_id);
-        
+
         // Convert to array for easier checking
         $current = [];
         while($loc = mysqli_fetch_assoc($current_locations)){
             $current[$loc['id']] = $loc['stock'];
         }
-        
+
         require __DIR__ . '/../views/manager/food_locations.php';
     } else {
         $foods = Food::getAllFoodsForManagement();
