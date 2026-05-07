@@ -125,6 +125,58 @@ elseif($action == 'manage-foods'){
     require __DIR__ . '/../views/manager/manage_foods.php';
 }
 
+elseif($action == 'manage-food-locations'){
+    if(isset($_POST['update_locations'])){
+        $food_id = $_POST['food_id'];
+        $selected_locations = isset($_POST['location_ids']) ? $_POST['location_ids'] : [];
+
+        // Check if food_locations table exists
+        $conn = $GLOBALS['conn'];
+        $check = mysqli_query($conn, "SHOW TABLES LIKE 'food_locations'");
+        
+        if(mysqli_num_rows($check) > 0){
+            // Delete existing food-location mappings
+            $sql = "DELETE FROM food_locations WHERE food_id = $food_id";
+            mysqli_query($conn, $sql);
+
+            // Add selected locations with their stock quantities
+            foreach($selected_locations as $location_id){
+                $location_id = (int)$location_id;
+                $stock = isset($_POST["stock_$location_id"]) ? (int)$_POST["stock_$location_id"] : 10;
+                
+                if($stock > 0){
+                    $sql = "INSERT INTO food_locations(food_id, location_id, stock) VALUES($food_id, $location_id, $stock)";
+                    mysqli_query($conn, $sql);
+                }
+            }
+            $_SESSION['success'] = "Food locations updated successfully";
+        } else {
+            $_SESSION['error'] = "Food locations table not yet created. Please create the table first.";
+        }
+        
+        header('Location: index.php?page=manager&action=food-locations');
+        exit();
+    }
+
+    if(isset($_GET['food_id'])){
+        $food_id = $_GET['food_id'];
+        $food = Food::getFoodById($food_id);
+        $locations = Food::getAllLocations();
+        $current_locations = Food::getLocationsByFoodId($food_id);
+        
+        // Convert to array for easier checking
+        $current = [];
+        while($loc = mysqli_fetch_assoc($current_locations)){
+            $current[$loc['id']] = $loc['stock'];
+        }
+        
+        require __DIR__ . '/../views/manager/food_locations.php';
+    } else {
+        $foods = Food::getAllFoodsForManagement();
+        require __DIR__ . '/../views/manager/food_locations_list.php';
+    }
+}
+
 elseif($action == 'logout'){
     session_destroy();
     header('Location: index.php');

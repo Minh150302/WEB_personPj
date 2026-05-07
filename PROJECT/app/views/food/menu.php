@@ -3,6 +3,14 @@
 
 <div class="container mt-5">
 
+<!-- Breadcrumb Navigation -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+        <li class="breadcrumb-item active">Menu</li>
+    </ol>
+</nav>
+
 <h2 class="mb-4">Food Menu</h2>
 
 <input type="text" id="search" class="form-control mb-4" placeholder="Search foods...">
@@ -15,7 +23,7 @@
 
 <div class="card h-100">
 
-<img src="images/<?php echo $row['image']; ?>" class="card-img-top">
+<img src="images/<?php echo $row['image']; ?>" class="card-img-top" style="height: 250px; object-fit: cover;">
 
 <div class="card-body">
 

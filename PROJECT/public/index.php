@@ -1,8 +1,7 @@
 <?php
 $page = $_GET['page'] ?? 'home';
 
-switch($page){
-
+switch($page) {
     case 'menu':
         require __DIR__ . '/../app/controllers/FoodController.php';
         break;

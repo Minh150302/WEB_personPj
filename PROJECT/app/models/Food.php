@@ -79,22 +79,29 @@ class Food {
         return mysqli_query($conn, $sql);
     }
 
-    public static function getCategoryName($category_id){
+    public static function getLocationsByFoodId($food_id){
         global $conn;
 
-        $sql = "SELECT category_name FROM categories WHERE id=$category_id";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-        return $row['category_name'] ?? 'Unknown';
+        // Check if food_locations table exists
+        $check = mysqli_query($conn, "SHOW TABLES LIKE 'food_locations'");
+        
+        if(mysqli_num_rows($check) > 0){
+            // Get ONLY locations assigned to this food from food_locations table
+            $sql = "SELECT l.*, fl.stock FROM locations l 
+                    INNER JOIN food_locations fl ON l.id = fl.location_id AND fl.food_id = $food_id
+                    ORDER BY l.id ASC";
+        } else {
+            // Fallback: return all locations with default stock if table doesn't exist
+            $sql = "SELECT *, 10 as stock FROM locations";
+        }
+        
+        return mysqli_query($conn, $sql);
     }
 
-    public static function getFoodLocations($food_id){
+    public static function getAllLocations(){
         global $conn;
 
-        $sql = "SELECT l.* FROM locations l 
-                JOIN food_locations fl ON l.id = fl.location_id 
-                WHERE fl.food_id=$food_id AND fl.available=1 
-                ORDER BY l.location_name ASC";
+        $sql = "SELECT * FROM locations";
         return mysqli_query($conn, $sql);
     }
 }

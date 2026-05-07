@@ -1,14 +1,12 @@
-<footer class="bg-dark text-white text-center p-5 mt-5">
+<footer class="bg-dark text-white mt-5 py-4">
 
-<div class="container">
+<div class="container-fluid">
 
 <div class="row">
 
 <div class="col-md-4">
 <h5>Location</h5>
-<p><a href="https://maps.google.com" target="_blank" class="btn btn-primary">
-123 Main St
-</a> <br> HCM <br>Phone: 12345678</p>
+<p>Downtown Branch<br>123 Food Street<br>City Center<br>Phone: (555) 123-4567</p>
 </div>
 
 <div class="col-md-4">
@@ -23,9 +21,9 @@
 
 </div>
 
-<hr class="bg-white">
+<hr class="bg-white my-3">
 
-<p>&copy; 2026 FOOD Restaurant. All Rights Reserved.</p>
+<p class="text-center text-small mb-0">&copy; 2026 FOOD Restaurant. All Rights Reserved.</p>
 
 </div>
 

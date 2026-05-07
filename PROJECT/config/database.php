@@ -6,7 +6,7 @@ $database = "restaurant_db";
 
 $conn = mysqli_connect($host, $user, $password, $database);
 
-if(!$conn){
+if (!$conn) {
     die("Database Connection Failed");
 }
 ?>

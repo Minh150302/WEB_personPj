@@ -20,6 +20,14 @@
 
 <div class="col-md-4">
 <div class="card p-4 text-center">
+<h5>Manage Food Locations</h5>
+<p>Control food availability at locations</p>
+<a href="index.php?page=manager&action=manage-food-locations" class="btn btn-dark">Manage Locations</a>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-4 text-center">
 <h5>View Users</h5>
 <p>Check user royal points and apply discounts</p>
 <a href="index.php?page=manager&action=users" class="btn btn-dark">View Users</a>
