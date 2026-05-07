@@ -16,31 +16,33 @@ Explore Menu
 
 <div class="container mt-5">
 
-<h2 class="text-center mb-4">Popular Foods</h2>
+<h2 class="text-center mb-4">Top Rated Foods</h2>
 
 <div class="row">
 
-<div class="col-md-4">
-<div class="card">
-<img src="images/pizza.png" class="card-img-top">
+<?php 
+require_once __DIR__ . '/../../models/Food.php';
+$foods = Food::getTopRatedFoods(3);
+while($row = mysqli_fetch_assoc($foods)) { 
+?>
+
+<div class="col-md-4 mb-4">
+<div class="card h-100 shadow">
+<div class="position-relative">
+<img src="images/<?php echo $row['image']; ?>" class="card-img-top" style="height: 250px; object-fit: cover;">
+<span class="badge bg-danger position-absolute top-0 end-0 m-2">⭐ <?php echo number_format($row['rating'], 1); ?></span>
+</div>
 <div class="card-body">
-<h5>Seafood Pizza</h5>
-<p>$12.99</p>
+<h5><?php echo $row['food_name']; ?></h5>
+<p class="text-muted"><?php echo substr($row['description'], 0, 60); ?>...</p>
+<p class="fw-bold">$<?php echo $row['price']; ?></p>
+<a href="index.php?page=detail&id=<?php echo $row['id']; ?>" class="btn btn-dark w-100">View Details</a>
 </div>
 </div>
 </div>
 
-<div class="col-md-4">
-<div class="card">
-<img src="images/burger.png" class="card-img-top">
-<div class="card-body">
-<h5>Cheese Burger</h5>
-<p>$8.99</p>
-</div>
-</div>
-</div>
+<?php } ?>
 
-</div>
 </div>
 
 <?php require __DIR__ . '/../layouts/footer.php'; ?>

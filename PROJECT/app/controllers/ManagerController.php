@@ -62,7 +62,7 @@ elseif($action == 'add-food'){
         // Handle image upload
         $image = '';
         if(isset($_FILES['image']) && $_FILES['image']['error'] == 0){
-            $upload_dir = __DIR__ . '/../../public/assets/images/';
+            $upload_dir = __DIR__ . '/../../public/images/';
             if(!is_dir($upload_dir)){
                 mkdir($upload_dir, 0755, true);
             }
@@ -107,6 +107,22 @@ elseif($action == 'apply-discount'){
 
     header('Location: index.php?page=manager&action=users');
     exit();
+}
+
+elseif($action == 'manage-foods'){
+    if(isset($_POST['update_rating'])){
+        $food_id = $_POST['food_id'];
+        $rating = $_POST['rating'];
+
+        if(Food::updateRating($food_id, $rating)){
+            $_SESSION['success'] = "Rating updated successfully";
+        } else {
+            $_SESSION['error'] = "Failed to update rating";
+        }
+    }
+
+    $foods = Food::getAllFoodsForManagement();
+    require __DIR__ . '/../views/manager/manage_foods.php';
 }
 
 elseif($action == 'logout'){
