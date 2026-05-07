@@ -5,7 +5,8 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100),
     email VARCHAR(100) UNIQUE,
-    password VARCHAR(255)
+    password VARCHAR(255),
+    royal_points INT DEFAULT 0
 );
 
 CREATE TABLE categories (
@@ -30,6 +31,13 @@ VALUES
 ('Burger'),
 ('Drinks'),
 ('Dessert');
+
+CREATE TABLE managers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    password VARCHAR(255)
+);
 
 INSERT INTO foods(food_name, description, price, image, rating, category_id)
 VALUES

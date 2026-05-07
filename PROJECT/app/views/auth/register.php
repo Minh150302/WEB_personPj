@@ -1,5 +1,5 @@
-<?php require __DIR__ . '/../app/views/layouts/header.php'; ?>
-<?php require __DIR__ . '/../app/views/layouts/navbar.php'; ?>
+<?php require __DIR__ . '/../layouts/header.php'; ?>
+<?php require __DIR__ . '/../layouts/navbar.php'; ?>
 
 <div class="container mt-5">
 
@@ -17,4 +17,17 @@
 
 <input type="email" name="email" class="form-control mb-3" placeholder="Email">
 
-<input type="password" name="password" class="form-control mb-
+<input type="password" name="password" class="form-control mb-3" placeholder="Password">
+
+<button type="submit" name="register" class="btn btn-dark w-100">
+Register
+</button>
+
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+<?php require __DIR__ . '/../layouts/footer.php'; ?>

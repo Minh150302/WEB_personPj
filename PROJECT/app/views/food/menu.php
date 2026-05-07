@@ -1,5 +1,5 @@
-<?php require __DIR__ . '/../app/views/layouts/header.php'; ?>
-<?php require __DIR__ . '/../app/views/layouts/navbar.php'; ?>
+<?php require __DIR__ . '/../layouts/header.php'; ?>
+<?php require __DIR__ . '/../layouts/navbar.php'; ?>
 
 <div class="container mt-5">
 
@@ -39,4 +39,4 @@ View Details
 </div>
 </div>
 
-<?php require __DIR__ . '/../app/views/layouts/footer.php'; ?>
+<?php require __DIR__ . '/../layouts/footer.php'; ?>

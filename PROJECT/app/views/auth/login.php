@@ -1,5 +1,5 @@
-<?php require __DIR__ . '/../app/views/layouts/header.php'; ?>
-<?php require __DIR__ . '/../app/views/layouts/navbar.php'; ?>
+<?php require __DIR__ . '/../layouts/header.php'; ?>
+<?php require __DIR__ . '/../layouts/navbar.php'; ?>
 
 <div class="container mt-5">
 
@@ -13,9 +13,14 @@
 
 <form method="POST">
 
-<input type="email" name="email" class="form-control mb-3" placeholder="Email">
+<input type="text" name="name" class="form-control mb-3" placeholder="Name" required>
 
-<input type="password" name="password" class="form-control mb-3" placeholder="Password">
+<input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+
+<div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" name="remember" id="rememberMe">
+    <label class="form-check-label" for="rememberMe">Remember me</label>
+</div>
 
 <button type="submit" name="login" class="btn btn-dark w-100">
 Login
@@ -28,4 +33,4 @@ Login
 </div>
 </div>
 
-<?php require __DIR__ . '/../app/views/layouts/footer.php'; ?>
+<?php require __DIR__ . '/../layouts/footer.php'; ?>

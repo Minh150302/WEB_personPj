@@ -1,3 +1,18 @@
+<?php
+if(session_status() === PHP_SESSION_NONE){
+    session_start();
+}
+
+if(!isset($_SESSION['user']) && isset($_COOKIE['remember_user_id'])){
+    require_once __DIR__ . '/../../models/User.php';
+    $rememberedUser = User::getById((int) $_COOKIE['remember_user_id']);
+    if($rememberedUser){
+        $_SESSION['user'] = $rememberedUser['name'];
+        $_SESSION['user_id'] = $rememberedUser['id'];
+        $_SESSION['user_name'] = $rememberedUser['name'];
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

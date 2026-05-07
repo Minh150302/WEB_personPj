@@ -20,6 +20,36 @@
 <a class="nav-link" href="index.php?page=menu">Menu</a>
 </li>
 
+<?php if(isset($_SESSION['user'])): ?>
+
+<li class="nav-item">
+<a class="nav-link" href="#">Welcome back, <?php echo $_SESSION['user_name']; ?></a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="index.php?page=points">Royal Points</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="index.php?page=logout">Logout</a>
+</li>
+
+<?php elseif(isset($_SESSION['manager'])): ?>
+
+<li class="nav-item">
+<a class="nav-link" href="#">Welcome back, <?php echo $_SESSION['manager']; ?></a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="index.php?page=manager&action=dashboard">Dashboard</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="index.php?page=manager&action=logout">Logout</a>
+</li>
+
+<?php else: ?>
+
 <li class="nav-item">
 <a class="nav-link" href="index.php?page=login">Login</a>
 </li>
@@ -27,6 +57,12 @@
 <li class="nav-item">
 <a class="nav-link" href="index.php?page=register">Register</a>
 </li>
+
+<li class="nav-item">
+<a class="nav-link" href="index.php?page=manager&action=login">Manager</a>
+</li>
+
+<?php endif; ?>
 
 </ul>
 

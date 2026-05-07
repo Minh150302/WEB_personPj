@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../app/models/Food.php';
+require_once __DIR__ . '/../models/Food.php';
 
 $page = $_GET['page'];
 
@@ -7,7 +7,7 @@ if($page == 'menu'){
 
     $foods = Food::getAllFoods();
 
-    require __DIR__ . '/../app/views/foods/menu.php';
+    require __DIR__ . '/../views/food/menu.php';
 }
 
 if($page == 'detail'){
@@ -16,6 +16,6 @@ if($page == 'detail'){
 
     $food = Food::getFoodById($id);
 
-    require __DIR__ . '/../app/views/foods/detail.php';
+    require __DIR__ . '/../views/food/detail.php';
 }
 ?>

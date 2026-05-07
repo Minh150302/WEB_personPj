@@ -19,6 +19,18 @@ switch($page){
         require __DIR__ . '/../app/controllers/AuthController.php';
         break;
 
+    case 'points':
+        require __DIR__ . '/../app/controllers/AuthController.php';
+        break;
+
+    case 'logout':
+        require __DIR__ . '/../app/controllers/AuthController.php';
+        break;
+
+    case 'manager':
+        require __DIR__ . '/../app/controllers/ManagerController.php';
+        break;
+
     default:
         require __DIR__ . '/../app/views/home/index.php';
         break;
